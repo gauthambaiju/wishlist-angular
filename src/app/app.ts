@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { WishList } from './wish-list/wish-list';
 import { AddWishForm } from './add-wish-form/add-wish-form';
 import { WishFilter } from './wish-filter/wish-filter';
+import { EventService } from '../shared/services/EventService';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,12 @@ export class App {
     new WishItem('Get Coffee', true),
     new WishItem('Find grass that cuts itself'),
   ]);
+
+  constructor(private events: EventService) {
+    this.events.listen('removeWish', (wishId: string) => {
+      this.items.update((items) => items.filter((item) => item.id !== wishId));
+    });
+  }
 
   newWishText = signal('');
   listFilter = signal<'0' | '1' | '2'>('0');
@@ -35,8 +42,6 @@ export class App {
         return items;
     }
   });
-
-  protected readonly title = signal('wishlist');
 
   addNewWish() {
     this.items.update((items) => [...items, new WishItem(this.newWishText())]);

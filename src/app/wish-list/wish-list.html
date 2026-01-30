@@ -1,24 +1,17 @@
-
   <div class="row mt-3">
-    @if (items.length === 0) {
-      <div>There are no wishes to display.</div>
-  } @else {
-    <ul class="wish-list">
-      @for (item of items; track item.id; let ii = $index) {
-        <li>
-          <div class="form-check">
-            <label class="form-check-label">
-              <input 
-                type="checkbox" 
-                class="checkbox" 
-                [checked]="item.isComplete"
-                [attr.data-index]="ii"
-                (change)="toggleItem(item)"
-                > {{ item.wishText }}
-              </label>
-            </div>
-          </li>
-        }
-      </ul>
-    }
+    <div class="col-sm-6">
+      @if (items.length === 0) {
+        <div>There are no wishes to display.</div>
+      } @else {
+        <ul class="wish-list">
+          @for (item of items; track item.id) {
+            <app-wish-list-item
+            [item]="item"
+            (toggled)="toggleItem(item)"
+            >
+            </app-wish-list-item>
+          }
+        </ul>
+      }
+    </div>
   </div>

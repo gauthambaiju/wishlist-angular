@@ -1,0 +1,15 @@
+<li class="d-flex justify-content-between">
+    <div class="form-check">
+    <label class="form-check-label" [ngClass]="{ 'strikeout text-muted': item.isComplete }">
+        <input 
+        type="checkbox" 
+        class="checkbox" 
+        [checked]="item.isComplete"
+        (change)="onChange()"
+        > {{ item.wishText }}
+    </label>
+    </div>
+    <div>
+        <button type="button" class="btn-close" (click)="removeWish()"></button>
+    </div>
+</li> 
