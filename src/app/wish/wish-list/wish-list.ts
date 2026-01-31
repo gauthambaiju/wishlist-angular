@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { WishItem } from '../../shared/models/wishItem';
+import { WishItem } from '../../../shared/models/wishItem';
 import { CommonModule } from '@angular/common';
 import { WishListItem } from '../wish-list-item/wish-list-item';
 
